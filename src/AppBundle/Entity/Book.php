@@ -32,6 +32,13 @@ class Book
     /**
      * @var string
      *
+     * @ORM\Column(name="author", type="string", length=255)
+     */
+    private $author;
+
+    /**
+     * @var string
+     *
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(name="slug", type="string", length=128, unique=true)
      */
@@ -40,7 +47,7 @@ class Book
     /**
      * @var string
      *
-     * @ORM\Column(name="preview", type="string", length=255)
+     * @ORM\Column(name="preview", type="string", length=255, nullable=true)
      */
     private $preview;
 
@@ -54,7 +61,7 @@ class Book
     /**
      * @var string
      *
-     * @ORM\Column(name="path", type="string", length=255)
+     * @ORM\Column(name="path", type="string", length=255, nullable=true)
      */
     private $path;
 
@@ -97,6 +104,26 @@ class Book
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param string $author
+     *
+     * @return Book
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 
     /**
@@ -197,10 +224,14 @@ class Book
 
     /**
      * @param Category $category
+     *
+     * @return Book
      */
     public function setCategory($category)
     {
         $this->category = $category;
+
+        return $this;
     }
 
     /**
