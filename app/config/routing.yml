@@ -1,7 +1,4 @@
-app_front:
-    resource: "@AppBundle/Controller/Front/"
+app:
+    resource: "@AppBundle/Controller/"
     type:     annotation
 
-app_admin:
-    resource: "@AppBundle/Controller/Admin/"
-    type:     annotation

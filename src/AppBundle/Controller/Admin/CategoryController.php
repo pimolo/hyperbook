@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\Front;
+namespace AppBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -13,14 +13,14 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Category controller.
  *
- * @Route("/category")
+ * @Route("/admin/category")
  */
 class CategoryController extends Controller
 {
     /**
      * Lists all Category entities.
      *
-     * @Route("/", name="category_index")
+     * @Route("/", name="admin_category_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -37,7 +37,7 @@ class CategoryController extends Controller
     /**
      * Creates a new Category entity.
      *
-     * @Route("/new", name="category_new")
+     * @Route("/new", name="admin_category_new")
      * @Method({"GET", "POST"})
      *
      * @param Request $request
@@ -66,9 +66,9 @@ class CategoryController extends Controller
     /**
      * Finds and displays a Category entity.
      *
-     * @Route("/{id}", name="category_show")
+     * @Route("/{id}", name="admin_category_show")
      * @Method("GET")
-     *
+
      * @param Category $category
      * @return Response
      */
@@ -85,7 +85,7 @@ class CategoryController extends Controller
     /**
      * Displays a form to edit an existing Category entity.
      *
-     * @Route("/{id}/edit", name="category_edit")
+     * @Route("/{id}/edit", name="admin_category_edit")
      * @Method({"GET", "POST"})
      *
      * @param Request $request
@@ -116,7 +116,7 @@ class CategoryController extends Controller
     /**
      * Deletes a Category entity.
      *
-     * @Route("/{id}", name="category_delete")
+     * @Route("/{id}", name="admin_category_delete")
      * @Method("DELETE")
      *
      * @param Request $request

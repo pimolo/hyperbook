@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\Front;
+namespace AppBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -13,14 +13,14 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Book controller.
  *
- * @Route("/book")
+ * @Route("/admin/book")
  */
 class BookController extends Controller
 {
     /**
      * Lists all Book entities.
      *
-     * @Route("/", name="book_index")
+     * @Route("/", name="admin_book_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -37,7 +37,7 @@ class BookController extends Controller
     /**
      * Creates a new Book entity.
      *
-     * @Route("/new", name="book_new")
+     * @Route("/new", name="admin_book_new")
      * @Method({"GET", "POST"})
      *
      * @param Request $request
@@ -66,7 +66,7 @@ class BookController extends Controller
     /**
      * Finds and displays a Book entity.
      *
-     * @Route("/{id}", name="book_show")
+     * @Route("/{id}", name="admin_book_show")
      * @Method("GET")
      *
      * @param Book $book
@@ -85,7 +85,7 @@ class BookController extends Controller
     /**
      * Displays a form to edit an existing Book entity.
      *
-     * @Route("/{id}/edit", name="book_edit")
+     * @Route("/{id}/edit", name="admin_book_edit")
      * @Method({"GET", "POST"})
      *
      * @param Request $request
@@ -116,7 +116,7 @@ class BookController extends Controller
     /**
      * Deletes a Book entity.
      *
-     * @Route("/{id}", name="book_delete")
+     * @Route("/{id}", name="admin_book_delete")
      * @Method("DELETE")
      *
      * @param Request $request
