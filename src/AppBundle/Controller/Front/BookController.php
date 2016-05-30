@@ -59,4 +59,20 @@ class BookController extends Controller
 
         return $this->render('AppBundle:Front:Book/index.html.twig', ['top5' => $books]);
     }
+
+    /**
+     * Finds and displays a Book entity.
+     *
+     * @Route("/download/{slug}", name="book_download")
+     * @Method("GET")
+     *
+     * @param Book $book
+     * @return Response
+     */
+    public function downloadAction(Book $book)
+    {
+        $downloadHandler = $this->get('vich_uploader.download_handler');
+
+        return $downloadHandler->downloadObject($book, 'bookFile');
+    }
 }

@@ -18,8 +18,8 @@
                 <td>{{ book.description }}</td>
             </tr>
             <tr>
-                <th>Link</th>
-                <td><a href="{{ vich_uploader_asset(book, 'bookFile') }}">{{ book.name }}</a></td>
+                <th>Download</th>
+                <td><a href="{{ path('book_download', {'slug': book.slug }) }}">{{ book.name }}</a></td>
             </tr>
         </tbody>
     </table>
