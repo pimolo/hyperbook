@@ -6,10 +6,6 @@
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ book.id }}</td>
-            </tr>
-            <tr>
                 <th>Name</th>
                 <td>{{ book.name }}</td>
             </tr>
@@ -30,10 +26,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('book_index') }}">Back to the list</a>
+            <a href="{{ path('admin_book_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('book_edit', { 'id': book.id }) }}">Edit</a>
+            <a href="{{ path('admin_book_edit', { 'slug': book.slug }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

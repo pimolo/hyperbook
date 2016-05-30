@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Admin;
 
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -29,7 +30,7 @@ class BookController extends Controller
 
         $books = $em->getRepository('AppBundle:Book')->findAll();
 
-        return $this->render('AppBundle:Front:Book/index.html.twig', array(
+        return $this->render('AppBundle:Admin:Book/index.html.twig', array(
             'books' => $books,
         ));
     }
@@ -54,10 +55,10 @@ class BookController extends Controller
             $em->persist($book);
             $em->flush();
 
-            return $this->redirectToRoute('book_show', array('id' => $book->getId()));
+            return $this->redirectToRoute('admin_book_show', array('slug' => $book->getSlug()));
         }
 
-        return $this->render('AppBundle:Front:Book/new.html.twig', array(
+        return $this->render('AppBundle:Admin:Book/new.html.twig', array(
             'book' => $book,
             'form' => $form->createView(),
         ));
@@ -66,7 +67,7 @@ class BookController extends Controller
     /**
      * Finds and displays a Book entity.
      *
-     * @Route("/{id}", name="admin_book_show")
+     * @Route("/{slug}", name="admin_book_show")
      * @Method("GET")
      *
      * @param Book $book
@@ -76,7 +77,7 @@ class BookController extends Controller
     {
         $deleteForm = $this->createDeleteForm($book);
 
-        return $this->render('AppBundle:Front:Book/show.html.twig', array(
+        return $this->render('AppBundle:Admin:Book/show.html.twig', array(
             'book' => $book,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +86,7 @@ class BookController extends Controller
     /**
      * Displays a form to edit an existing Book entity.
      *
-     * @Route("/{id}/edit", name="admin_book_edit")
+     * @Route("/{slug}/edit", name="admin_book_edit")
      * @Method({"GET", "POST"})
      *
      * @param Request $request
@@ -103,10 +104,10 @@ class BookController extends Controller
             $em->persist($book);
             $em->flush();
 
-            return $this->redirectToRoute('book_edit', array('id' => $book->getId()));
+            return $this->redirectToRoute('admin_book_edit', array('slug' => $book->getSlug()));
         }
 
-        return $this->render('AppBundle:Front:Book/edit.html.twig', array(
+        return $this->render('AppBundle:Admin:Book/edit.html.twig', array(
             'book' => $book,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -116,7 +117,7 @@ class BookController extends Controller
     /**
      * Deletes a Book entity.
      *
-     * @Route("/{id}", name="admin_book_delete")
+     * @Route("/{slug}", name="admin_book_delete")
      * @Method("DELETE")
      *
      * @param Request $request
@@ -134,7 +135,7 @@ class BookController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('book_index');
+        return $this->redirectToRoute('admin_book_index');
     }
 
     /**
@@ -147,7 +148,7 @@ class BookController extends Controller
     private function createDeleteForm(Book $book)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('book_delete', array('id' => $book->getId())))
+            ->setAction($this->generateUrl('admin_book_delete', array('slug' => $book->getSlug())))
             ->setMethod('DELETE')
             ->getForm()
         ;

@@ -35,38 +35,9 @@ class BookController extends Controller
     }
 
     /**
-     * Creates a new Book entity.
-     *
-     * @Route("/new", name="book_new")
-     * @Method({"GET", "POST"})
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function newAction(Request $request)
-    {
-        $book = new Book();
-        $form = $this->createForm('AppBundle\Form\BookType', $book);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($book);
-            $em->flush();
-
-            return $this->redirectToRoute('book_show', array('id' => $book->getId()));
-        }
-
-        return $this->render('AppBundle:Front:Book/new.html.twig', array(
-            'book' => $book,
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
      * Finds and displays a Book entity.
      *
-     * @Route("/{id}", name="book_show")
+     * @Route("/{slug}", name="book_show")
      * @Method("GET")
      *
      * @param Book $book
@@ -74,82 +45,18 @@ class BookController extends Controller
      */
     public function showAction(Book $book)
     {
-        $deleteForm = $this->createDeleteForm($book);
-
         return $this->render('AppBundle:Front:Book/show.html.twig', array(
             'book' => $book,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Book entity.
-     *
-     * @Route("/{id}/edit", name="book_edit")
-     * @Method({"GET", "POST"})
-     *
-     * @param Request $request
-     * @param Book $book
      * @return Response
      */
-    public function editAction(Request $request, Book $book)
+    public function topAction()
     {
-        $deleteForm = $this->createDeleteForm($book);
-        $editForm = $this->createForm('AppBundle\Form\BookType', $book);
-        $editForm->handleRequest($request);
+        $books = $this->getDoctrine()->getRepository('AppBundle:Book')->findBy([], ['downloads' => 'DESC'], 5);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($book);
-            $em->flush();
-
-            return $this->redirectToRoute('book_edit', array('id' => $book->getId()));
-        }
-
-        return $this->render('AppBundle:Front:Book/edit.html.twig', array(
-            'book' => $book,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Deletes a Book entity.
-     *
-     * @Route("/{id}", name="book_delete")
-     * @Method("DELETE")
-     *
-     * @param Request $request
-     * @param Book $book
-     * @return Response
-     */
-    public function deleteAction(Request $request, Book $book)
-    {
-        $form = $this->createDeleteForm($book);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($book);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('book_index');
-    }
-
-    /**
-     * Creates a form to delete a Book entity.
-     *
-     * @param Book $book The Book entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Book $book)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('book_delete', array('id' => $book->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+        return $this->render('AppBundle:Front:Book/index.html.twig', ['top5' => $books]);
     }
 }

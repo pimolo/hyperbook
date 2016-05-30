@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class BookType extends AbstractType
 {
@@ -17,9 +18,9 @@ class BookType extends AbstractType
         $builder
             ->add('name')
             ->add('author')
-            ->add('slug')
             ->add('description')
             ->add('category')
+            ->add('file', VichFileType::class)
         ;
     }
     

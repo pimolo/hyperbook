@@ -6,7 +6,6 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Author</th>
                 <th>Slug</th>
@@ -18,8 +17,7 @@
         <tbody>
         {% for book in books %}
             <tr>
-                <td><a href="{{ path('book_show', { 'id': book.id }) }}">{{ book.id }}</a></td>
-                <td>{{ book.name }}</td>
+                <td><a href="{{ path('admin_book_show', { 'slug': book.slug }) }}">{{ book.name }}</a></td>
                 <td>{{ book.author }}</td>
                 <td>{{ book.slug }}</td>
                 <td>{{ book.preview }}</td>
@@ -27,10 +25,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('book_show', { 'id': book.id }) }}">show</a>
+                            <a href="{{ path('admin_book_show', { 'slug': book.slug }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('book_edit', { 'id': book.id }) }}">edit</a>
+                            <a href="{{ path('admin_book_edit', { 'slug': book.slug }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -41,7 +39,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('book_new') }}">Create a new entry</a>
+            <a href="{{ path('admin_book_new') }}">Create a new entry</a>
         </li>
     </ul>
 {% endblock %}
