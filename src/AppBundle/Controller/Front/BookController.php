@@ -35,6 +35,19 @@ class BookController extends Controller
     }
 
     /**
+     * @Route("/top5", name="book_index_top5")
+     * @Method("GET")
+     *
+     * @return Response
+     */
+    public function topAction()
+    {
+        $books = $this->getDoctrine()->getRepository('AppBundle:Book')->findBy([], ['downloads' => 'DESC'], 5);
+
+        return $this->render('AppBundle:Front:Book/index.html.twig', ['books' => $books]);
+    }
+
+    /**
      * Finds and displays a Book entity.
      *
      * @Route("/{slug}", name="book_show")
@@ -48,16 +61,6 @@ class BookController extends Controller
         return $this->render('AppBundle:Front:Book/show.html.twig', array(
             'book' => $book,
         ));
-    }
-
-    /**
-     * @return Response
-     */
-    public function topAction()
-    {
-        $books = $this->getDoctrine()->getRepository('AppBundle:Book')->findBy([], ['downloads' => 'DESC'], 5);
-
-        return $this->render('AppBundle:Front:Book/index.html.twig', ['top5' => $books]);
     }
 
     /**
