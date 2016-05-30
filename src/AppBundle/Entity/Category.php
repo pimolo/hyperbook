@@ -103,4 +103,3 @@ class Category
         return $this->slug;
     }
 }
-

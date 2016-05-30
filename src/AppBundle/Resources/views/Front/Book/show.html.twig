@@ -14,12 +14,12 @@
                 <td>{{ book.author }}</td>
             </tr>
             <tr>
-                <th>Preview</th>
-                <td>{{ book.preview }}</td>
-            </tr>
-            <tr>
                 <th>Description</th>
                 <td>{{ book.description }}</td>
+            </tr>
+            <tr>
+                <th>Link</th>
+                <td><a href="{{ vich_uploader_asset(book, 'bookFile') }}">{{ book.name }}</a></td>
             </tr>
         </tbody>
     </table>

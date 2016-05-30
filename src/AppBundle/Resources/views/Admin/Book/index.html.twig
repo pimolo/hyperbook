@@ -8,9 +8,8 @@
             <tr>
                 <th>Name</th>
                 <th>Author</th>
-                <th>Slug</th>
-                <th>Preview</th>
                 <th>Description</th>
+                <th>Link</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -19,9 +18,8 @@
             <tr>
                 <td><a href="{{ path('admin_book_show', { 'slug': book.slug }) }}">{{ book.name }}</a></td>
                 <td>{{ book.author }}</td>
-                <td>{{ book.slug }}</td>
-                <td>{{ book.preview }}</td>
                 <td>{{ book.description }}</td>
+                <td><a href="{{ vich_uploader_asset(book, 'bookFile') }}">{{ book.name }}</a></td>
                 <td>
                     <ul>
                         <li>

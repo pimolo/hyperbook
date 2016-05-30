@@ -51,13 +51,6 @@ class Book
     /**
      * @var string
      *
-     * @ORM\Column(name="preview", type="string", length=255, nullable=true)
-     */
-    private $preview;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
@@ -86,7 +79,7 @@ class Book
      *
      * @var File
      */
-    private $file;
+    private $bookFile;
 
     /**
      * @var \DateTime
@@ -174,30 +167,6 @@ class Book
     }
 
     /**
-     * Set preview
-     *
-     * @param string $preview
-     *
-     * @return Book
-     */
-    public function setPreview($preview)
-    {
-        $this->preview = $preview;
-
-        return $this;
-    }
-
-    /**
-     * Get preview
-     *
-     * @return string
-     */
-    public function getPreview()
-    {
-        return $this->preview;
-    }
-
-    /**
      * Set description
      *
      * @param string $description
@@ -276,9 +245,9 @@ class Book
      *
      * @return Book
      */
-    public function setFile(File $book = null)
+    public function setBookFile(File $book = null)
     {
-        $this->file = $book;
+        $this->bookFile = $book;
 
         if ($book) {
             // It is required that at least one field changes if you are using doctrine
@@ -292,9 +261,9 @@ class Book
     /**
      * @return File
      */
-    public function getFile()
+    public function getBookFile()
     {
-        return $this->file;
+        return $this->bookFile;
     }
 
     /**

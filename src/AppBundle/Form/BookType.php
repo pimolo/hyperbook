@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class BookType extends AbstractType
 {
@@ -20,7 +21,7 @@ class BookType extends AbstractType
             ->add('author')
             ->add('description')
             ->add('category')
-            ->add('file', VichFileType::class)
+            ->add('bookFile', VichFileType::class)
         ;
     }
     
