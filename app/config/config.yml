@@ -81,3 +81,8 @@ vich_uploader:
         book:
             uri_prefix:         /web/uploads/books
             upload_destination: %kernel.root_dir%/../web/uploads/books
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\User
