@@ -89,6 +89,13 @@ class Book
     private $updatedAt;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="downloads", type="integer")
+     */
+    private $downloads = 0;
+
+    /**
      * Get id
      *
      * @return int
@@ -280,5 +287,21 @@ class Book
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * @param int $downloads
+     */
+    public function setDownloads($downloads)
+    {
+        $this->downloads = $downloads;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDownloads()
+    {
+        return $this->downloads;
     }
 }

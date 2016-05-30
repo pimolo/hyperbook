@@ -10,6 +10,7 @@
                 <th>Author</th>
                 <th>Description</th>
                 <th>Download</th>
+                <th>Download number</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{ book.author }}</td>
                 <td>{{ book.description }}</td>
                 <td><a href="{{ path('book_download', {'slug': book.slug }) }}">{{ book.name }}</a></td>
+                <td>{{ book.downloads }}</td>
                 <td>
                     <ul>
                         <li>

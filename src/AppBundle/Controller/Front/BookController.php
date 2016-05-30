@@ -71,6 +71,9 @@ class BookController extends Controller
      */
     public function downloadAction(Book $book)
     {
+        $book->setDownloads($book->getDownloads() + 1);
+        $this->getDoctrine()->getManager()->flush();
+
         $downloadHandler = $this->get('vich_uploader.download_handler');
 
         return $downloadHandler->downloadObject($book, 'bookFile');
