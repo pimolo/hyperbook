@@ -20,7 +20,7 @@ class LoadBooks extends AbstractFixture implements OrderedFixtureInterface
             ->setAuthor('Shakespeare')
             ->setDescription('A reference.')
             ->setCategory($novels)
-            ->setPath('fixtures/cv_remi_andrieux.pdf')
+            ->setPath('cv_remi_andrieux.pdf')
         ;
 
         $book2 = (new Book())
@@ -28,7 +28,7 @@ class LoadBooks extends AbstractFixture implements OrderedFixtureInterface
             ->setAuthor('Shakespeare')
             ->setDescription('An other reference.')
             ->setCategory($novels)
-            ->setPath('fixtures/cv_remi_andrieux.pdf')
+            ->setPath('cv_remi_andrieux.pdf')
         ;
 
         $manager->persist($book1);
