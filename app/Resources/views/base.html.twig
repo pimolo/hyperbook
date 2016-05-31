@@ -7,6 +7,18 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <h1>HyperBook</h1>
+        <nav>
+            <ul>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li><a href="{{ path('admin_book_index') }}">Manage all books (admin)</a></li>
+                    <li><a href="{{ path('admin_category_index') }}">Manage all categories (admin)</a></li>
+                {% endif %}
+                <li><a href="{{ path('book_index') }}">Show all books</a></li>
+                <li><a href="{{ path('category_index') }}">Show all categories</a></li>
+            </ul>
+        </nav>
+        <hr>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
