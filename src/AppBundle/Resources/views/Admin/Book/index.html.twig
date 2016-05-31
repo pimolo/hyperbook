@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Book list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Description</th>
+                {% if is_granted('ROLE_USER') %}<th>Download</th>{% endif %}
+                <th>Download number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td><a href="{{ path('admin_book_show', { 'slug': book.slug }) }}">{{ book.name }}</a></td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.description }}</td>
+                {% if is_granted('ROLE_USER') %}
+                    <td><a href="{{ path('book_download', {'slug': book.slug }) }}">{{ book.name }}</a></td>
+                {% endif %}
+                <td>{{ book.downloads }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_book_show', { 'slug': book.slug }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_book_edit', { 'slug': book.slug }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_book_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

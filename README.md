@@ -1,4 +1,13 @@
-.checkout
-=========
+HyperBook
+==========
 
-A Symfony project created on March 30, 2016, 12:44 pm.
+Rémi Andrieux
+
+## To bootstrap the project:
+
+```sh
+$ composer install
+$ php bin/console do:da:cr
+$ php bin/console do:mi:mi
+$ php bin/console do:fi:lo
+```

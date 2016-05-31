@@ -14,4 +14,5 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-/app/data/data.db3
+/web/uploads/
+!/web/uploads/books/cv_remi_andrieux.pdf

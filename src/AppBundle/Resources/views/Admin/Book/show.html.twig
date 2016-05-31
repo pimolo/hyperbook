@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Book</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ book.name }}</td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td>{{ book.author }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ book.description }}</td>
+            </tr>
+            <tr>
+                <th>Download</th>
+                <td><a href="{{ path('book_download', {'slug': book.slug }) }}">{{ book.name }}</a></td>
+            </tr>
+            {% if is_granted('ROLE_USER') %}
+                <tr>
+                    <th>Download number</th>
+                    <td>{{ book.downloads }}</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_book_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_book_edit', { 'slug': book.slug }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
