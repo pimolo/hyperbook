@@ -74,6 +74,8 @@ class BookController extends Controller
      */
     public function downloadAction(Book $book)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         $book->setDownloads($book->getDownloads() + 1);
         $this->getDoctrine()->getManager()->flush();
 

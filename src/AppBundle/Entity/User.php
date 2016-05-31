@@ -20,8 +20,8 @@ class User extends BaseUser
 
     public function __construct()
     {
+        // don't do this at home
         parent::__construct();
-        // your own logic
         $this->addRole('ROLE_USER');
     }
 }

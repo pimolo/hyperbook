@@ -21,10 +21,12 @@
                 <th>Download</th>
                 <td><a href="{{ path('book_download', {'slug': book.slug }) }}">{{ book.name }}</a></td>
             </tr>
-            <tr>
-                <th>Download number</th>
-                <td>{{ book.downloads }}</td>
-            </tr>
+            {% if is_granted('ROLE_USER') %}
+                <tr>
+                    <th>Download number</th>
+                    <td>{{ book.downloads }}</td>
+                </tr>
+            {% endif %}
         </tbody>
     </table>
 
