@@ -29,7 +29,7 @@ class CategoryController extends Controller
 
         $categories = $em->getRepository('AppBundle:Category')->findAll();
 
-        return $this->render('AppBundle:Front:Category/index.html.twig', array(
+        return $this->render('AppBundle:Admin:Category/index.html.twig', array(
             'categories' => $categories,
         ));
     }
@@ -54,10 +54,10 @@ class CategoryController extends Controller
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('category_show', array('id' => $category->getId()));
+            return $this->redirectToRoute('category_show', array('slug' => $category->getSlug()));
         }
 
-        return $this->render('AppBundle:Front:Category/new.html.twig', array(
+        return $this->render('AppBundle:Admin:Category/new.html.twig', array(
             'category' => $category,
             'form' => $form->createView(),
         ));
@@ -66,7 +66,7 @@ class CategoryController extends Controller
     /**
      * Finds and displays a Category entity.
      *
-     * @Route("/{id}", name="admin_category_show")
+     * @Route("/{slug}", name="admin_category_show")
      * @Method("GET")
 
      * @param Category $category
@@ -76,7 +76,7 @@ class CategoryController extends Controller
     {
         $deleteForm = $this->createDeleteForm($category);
 
-        return $this->render('AppBundle:Front:Category/show.html.twig', array(
+        return $this->render('AppBundle:Admin:Category/show.html.twig', array(
             'category' => $category,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +85,7 @@ class CategoryController extends Controller
     /**
      * Displays a form to edit an existing Category entity.
      *
-     * @Route("/{id}/edit", name="admin_category_edit")
+     * @Route("/{slug}/edit", name="admin_category_edit")
      * @Method({"GET", "POST"})
      *
      * @param Request $request
@@ -103,10 +103,10 @@ class CategoryController extends Controller
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('category_edit', array('id' => $category->getId()));
+            return $this->redirectToRoute('category_edit', array('slug' => $category->getSlug()));
         }
 
-        return $this->render('AppBundle:Front:Category/edit.html.twig', array(
+        return $this->render('AppBundle:Admin:Category/edit.html.twig', array(
             'category' => $category,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -116,7 +116,7 @@ class CategoryController extends Controller
     /**
      * Deletes a Category entity.
      *
-     * @Route("/{id}", name="admin_category_delete")
+     * @Route("/{slug}", name="admin_category_delete")
      * @Method("DELETE")
      *
      * @param Request $request
@@ -147,7 +147,7 @@ class CategoryController extends Controller
     private function createDeleteForm(Category $category)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('category_delete', array('id' => $category->getId())))
+            ->setAction($this->generateUrl('category_delete', array('slug' => $category->getSlug())))
             ->setMethod('DELETE')
             ->getForm()
         ;
