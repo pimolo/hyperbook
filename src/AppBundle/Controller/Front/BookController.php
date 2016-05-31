@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Front;
 
+use AppBundle\Entity\Category;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -64,8 +65,20 @@ class BookController extends Controller
     }
 
     /**
-     * Finds and displays a Book entity.
+     * @Route("/category/{slug}", name="book_index_category")
+     * @Method("GET")
      *
+     * @param Category $category
+     * @return Response
+     */
+    public function listByCategory(Category $category)
+    {
+        return $this->render('AppBundle:Front:Book/index.html.twig', array(
+            'books' => $category->getBooks(),
+        ));
+    }
+
+    /**
      * @Route("/download/{slug}", name="book_download")
      * @Method("GET")
      *
