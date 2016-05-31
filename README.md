@@ -11,3 +11,7 @@ $ php bin/console do:da:cr
 $ php bin/console do:mi:mi
 $ php bin/console do:fi:lo
 ```
+
+Admin : admin/password
+
+User : user/password
